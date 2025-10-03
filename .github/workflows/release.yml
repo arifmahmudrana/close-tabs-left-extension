@@ -6,29 +6,26 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write   # allow the GITHUB_TOKEN to create releases
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Create ZIP package
-      run: |
-        zip -r close-tabs-left-extension.zip . -x "*.git*" "*.github*"
+      - name: Create ZIP package
+        run: |
+          zip -r close-tabs-left-extension.zip . -x "*.git*" "*.github*"
 
-    - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        name: Close Tabs to the Left v${{ github.run_number }}
-        tag_name: v${{ github.run_number }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Upload ZIP to release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: close-tabs-left-extension.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub Release and upload asset
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Close Tabs to the Left v${{ github.run_number }}
+          tag_name: v${{ github.run_number }}
+          files: close-tabs-left-extension.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
