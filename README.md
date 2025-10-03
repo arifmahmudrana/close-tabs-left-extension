@@ -23,6 +23,8 @@ It provides two ways to trigger the action:
 
 ## Installation (Developer / Testing)
 
+### From Source (Developer)
+
 1. Download or clone the extension folder.
 2. Open your browser: `chrome://extensions/`
 3. Enable **Developer mode** (top-right).
@@ -30,6 +32,15 @@ It provides two ways to trigger the action:
 5. The extension icon will appear in the toolbar.
 
 > **Note:** After making code changes, click **Reload** in `chrome://extensions/` to apply updates. No need to remove and reload unpacked.
+
+### From GitHub Release
+
+1. Go to the [Releases](https://github.com/arifmahmudrana/close-tabs-left-extension/releases) tab of this repository.
+2. Download the latest `.zip` package (e.g., `close-tabs-left-extension.zip`).
+3. Unzip the package somewhere on your computer.
+4. Open `chrome://extensions/` in your browser and enable **Developer mode**.
+5. Click **Load unpacked** → select the unzipped folder.
+6. The extension icon will now appear in the toolbar.
 
 ---
 
@@ -72,9 +83,11 @@ By default, extensions **do not run in Incognito**. To enable:
 ## File Structure
 
 ```
+
 close-tabs-left-extension/
 │── manifest.json         # Extension metadata and permissions
 │── background.js         # Background service worker; main logic
+
 ```
 
 ---
