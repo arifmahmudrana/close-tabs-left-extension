@@ -1,0 +1,44 @@
+name: Build & Release Extension
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node (optional, for linting)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Validate JS (optional)
+      run: |
+        npm install eslint
+        npx eslint background.js
+
+    - name: Create ZIP package
+      run: |
+        zip -r close-tabs-left-extension.zip . -x "*.git*" "*.github*"
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: Close Tabs to the Left v${{ github.run_number }}
+        tag_name: v${{ github.run_number }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload ZIP to release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: close-tabs-left-extension.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
