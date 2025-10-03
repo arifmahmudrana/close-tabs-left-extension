@@ -1,0 +1,16 @@
+# Node modules (if any)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Browser extension build artifacts (if you ever pack)
+*.crx
+*.zip
+
+# Log files
+*.log
+
+# VSCode settings
+.vscode/

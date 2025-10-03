@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Close Tabs to the Left",
+  "description": "Adds a toolbar button and context menu item to close tabs to the left of the current one.",
+  "version": "1.0",
+  "permissions": ["tabs", "contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Close Tabs to the Left"
+  }
+}
